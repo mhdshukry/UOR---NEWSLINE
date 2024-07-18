@@ -8,10 +8,9 @@ if (!isset($_SESSION['loggedin'])) {
     exit();
 }
 
-// Fetch user details based on session data
-$email = $_SESSION['email']; // Assuming you have 'Email' stored in session
+$email = $_SESSION['email']; 
 
-// Fetch student details and associated user details
+
 $sql = "SELECT student.*, user.ProfilePicture, user.Name AS UserName 
         FROM student 
         JOIN user ON student.UserID = user.UserID 

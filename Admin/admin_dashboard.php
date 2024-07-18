@@ -5,13 +5,12 @@ session_start();
 include 'connection.php';
 
 if (!isset($_SESSION['loggedin']) || ($_SESSION['roll'] != 'Dean' && $_SESSION['roll'] != 'Lecturer')) {
-    header('Location: ../login.php');
+    header('Location: ../index.php');
     exit();
 }
 
 $email = $_SESSION['email']; 
 
-// Determine which table to query based on user role
 if ($_SESSION['roll'] == 'Dean') {
     $sql = "SELECT dean.*, user.ProfilePicture, user.Name AS UserName 
             FROM dean 
@@ -53,7 +52,7 @@ $conn->close();
 </head>
 <body>
 
-    <h1><img src="../assets/images/ruhuna.png" alt="Rajarata University Logo" class="nav_logo_img">UOR - NEWSLINE</h1>
+    <h1><img src="../assets/images/ruhuna.png" alt="Ruhuna University Logo" class="nav_logo_img">UOR - NEWSLINE</h1>
 
     <div class="user_menu">
         <span>Welcome, <?php echo htmlspecialchars($_SESSION['name']); ?></span>

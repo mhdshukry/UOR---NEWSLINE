@@ -1,7 +1,5 @@
 <?php
-// Check if the form is submitted
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Validate and sanitize inputs
     $name = htmlspecialchars(trim($_POST['name']));
     $email = filter_var(trim($_POST['email']), FILTER_SANITIZE_EMAIL);
     $password = $_POST['password'];
@@ -62,8 +60,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             die('File size exceeds the maximum limit of 5MB.');
         }
 
-        // Check if current user is an admin or a student
-        $currentUserRole = 'Student'; // default role
+        $currentUserRole = 'Student'; 
 
         if (isset($_SESSION['Dean']) && $_SESSION['Dean'] === true) {
             $currentUserRole = 'Dean';
@@ -73,11 +70,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $currentUserRole = 'Lecturer';
         }
 
-        // Set upload directory and profile picture path based on user role
         if ($currentUserRole === 'Dean' || $currentUserRole === 'Lecturer') {
-            $uploadDir = '../uploads/'; // adjust the directory path for admin
+            $uploadDir = '../uploads/'; 
         } else {
-            $uploadDir = './uploads/'; // adjust the directory path for student
+            $uploadDir = './uploads/'; 
         }
 
         if (!is_dir($uploadDir)) {
@@ -91,10 +87,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
     }
 
-    // Prepare SQL statement to insert data into database
     $sql = "INSERT INTO user (Name, Email, Password, Roll, ProfilePicture) VALUES (?, ?, ?, 'Student', ?)";
 
-    // Use prepared statement for security
     $stmt = $conn->prepare($sql);
     if ($stmt === false) {
         die("Error preparing the statement: " . $conn->error);
@@ -103,17 +97,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Bind parameters
     $stmt->bind_param("ssss", $name, $email, $hashed_password, $profilePicture);
 
-    // Execute the prepared statement
     if ($stmt->execute()) {
         echo "New record created successfully";
-        // Redirect to login page or any other page after successful signup
         header('Location: index.php');
         exit;
     } else {
         echo "Error executing the statement: " . $stmt->error;
     }
 
-    // Close the prepared statement and database connection
     $stmt->close();
     $conn->close();
 }

@@ -3,7 +3,7 @@ session_start();
 include 'connection.php';
 
 if (!isset($_SESSION['loggedin']) || ($_SESSION['roll'] != 'Dean' && $_SESSION['roll'] != 'Lecturer')) {
-    header('Location: ../Student/login.php');
+    header('Location: ../index.php');
     exit();
 }
 
@@ -18,7 +18,6 @@ if (isset($_GET['id'])) {
     $stmt->close();
 }
 
-// Fetch profile picture
 $sqlProfile = "SELECT ProfilePicture FROM user WHERE Email = ?";
 $stmtProfile = $conn->prepare($sqlProfile);
 $stmtProfile->bind_param("s", $_SESSION['email']);
@@ -60,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])) {
     <link rel="stylesheet" href="../assets/CSS/style4.css">
 </head>
 <body>
-    <h1><img src="../assets/images/ruhuna.png" alt="Rajarata University Logo" class="nav_logo_img">UOR - NEWSLINE</h1>
+    <h1><img src="../assets/images/ruhuna.png" alt="Ruhuna University Logo" class="nav_logo_img">UOR - NEWSLINE</h1>
         
     <div class="user_menu">
         <span>Welcome, <?php echo htmlspecialchars($_SESSION['name']); ?></span>

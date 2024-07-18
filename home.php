@@ -2,7 +2,6 @@
 session_start();
 include 'connection.php';
 
-// Check if user is logged in
 if (!isset($_SESSION['loggedin'])) {
     header('Location: login.php');
     exit();
@@ -19,7 +18,6 @@ if ($_SESSION['roll'] == 'Dean') {
     header('Location: ./Admin/lecturer.php');
     exit();
 } else {
-    // If role is undefined, log out
     header('Location: logout.php');
     exit();
 }

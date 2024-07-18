@@ -3,7 +3,7 @@ session_start();
 include 'connection.php';
 
 if (!isset($_SESSION['loggedin']) || $_SESSION['roll'] != 'Lecturer') {
-    header('Location: ../Student/login.php');
+    header('Location: ../index.php');
     exit();
 }
 
@@ -45,7 +45,7 @@ $result = $conn->query($sql);
     <span>Welcome, <?php echo htmlspecialchars($_SESSION['name']); ?></span>
     <div class="center_buttons">
         <a href="add_news.php" class="button">Add News</a>
-        <a href="sent_news.php" class="button">Sent News</a>
+        <a href="sent_news.php" class="button">Send News</a>
     </div>
     <div class="profile_menu">
         <?php if (!empty($profilePicture)): ?>

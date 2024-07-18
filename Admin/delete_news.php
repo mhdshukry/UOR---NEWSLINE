@@ -3,7 +3,7 @@ session_start();
 include 'connection.php';
 
 if (!isset($_SESSION['loggedin']) || ($_SESSION['roll'] != 'Dean' && $_SESSION['roll'] != 'Lecturer')) {
-    header('Location: ../Student/login.php');
+    header('Location: ../index.php');
     exit();
 }
 

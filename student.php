@@ -21,10 +21,8 @@ $row = $result->fetch_assoc();
 $profilePicture = $row['ProfilePicture'];
 $stmt->close();
 
-// Sanitize and validate the category input
 $category = isset($_GET['category']) ? intval($_GET['category']) : 1;
 
-// Fetch news based on the selected category, including user info
 $sql = "SELECT news.Title, news.Content, news.DatePublished, category.CategoryName, 
         user.Name AS UserName, user.ProfilePicture AS UserProfilePicture, user.Roll AS UserRole 
         FROM news 
@@ -80,10 +78,9 @@ $result = $stmt->get_result();
                     <article>
                         <div class="news-user-info">
                             <?php 
-                            // Determine the correct profile picture path based on user role
                             $userProfilePicture = $row['UserProfilePicture'];
                             if ($row['UserRole'] == 'Dean' || $row['UserRole'] == 'Lecturer') {
-                                $userProfilePicture = str_replace('../', '', $userProfilePicture); // Adjust path for Dean/Lecturer
+                                $userProfilePicture = str_replace('../', '', $userProfilePicture); 
                             }
                             ?>
                             <?php if (!empty($userProfilePicture)): ?>
