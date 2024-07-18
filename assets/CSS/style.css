@@ -9,13 +9,21 @@
 
 body {
   background-image: url('../images/RUHUNA1.jpg');
-  background-size: cover;
-  background-position: center;
+  background-size: 100%;
 }
 
 a {
   text-decoration: none;
 }
+
+.form_container .form {
+  display: none;
+}
+
+.form_container .form.show {
+  display: block;
+}
+
 
 .header {
   position: fixed;
@@ -23,9 +31,7 @@ a {
   width: 100%;
   z-index: 100;
   padding: 0 20px;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .nav {
@@ -33,7 +39,7 @@ a {
   align-items: center;
   justify-content: space-between;
   max-width: 1200px;
-  margin: 0 auto;
+  margin-left: 600px;
   padding: 0 20px;
 }
 
@@ -50,15 +56,30 @@ a {
   margin-right: auto;
 }
 
-.nav {
+.nav,
+.nav_item {
   display: flex;
   height: 100%;
   align-items: center;
   justify-content: space-between;
 }
 
+.nav_logo,
+.nav_link,
+.button {
+  color: #fff;
+}
+
 .nav_logo {
   font-size: 25px;
+}
+
+.nav_item {
+  column-gap: 25px;
+}
+
+.nav_link:hover {
+  color: #d9d9d9;
 }
 
 .button {
@@ -67,24 +88,24 @@ a {
   background: transparent;
   border-radius: 6px;
   cursor: pointer;
-  color: #fff;
-  transition: background-color 0.3s, color 0.3s;
 }
 
 .button:active {
   transform: scale(0.98);
 }
 
-.button:hover {
-  background-color: #fff;
-  color: #000;
+.user_menu {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  color: #fff;
 }
 
 .home {
   position: relative;
   height: 100vh;
   width: 100%;
-  background-size: cover;
+  background-size: auto;
 }
 
 .home::before {
@@ -112,11 +133,10 @@ a {
   left: 50%;
   transform: translate(-50%, -50%) scale(1.2);
   z-index: 101;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
+  background: #fff;
   padding: 25px;
   border-radius: 12px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: rgba(0, 0, 0, 0.1);
   opacity: 0;
   pointer-events: none;
   transition: all 0.4s ease-out;
@@ -250,47 +270,6 @@ a {
   margin-top: 15px;
 }
 
-/* Glassmorphism styles */
-.profile_picture_upload {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-.profile_picture_upload label {
-  display: block;
-  position: relative;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  overflow: hidden;
-  margin: 0 auto;
-  cursor: pointer;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.profile_picture_upload label img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.profile_picture_upload label i {
-  position: absolute;
-  bottom: 5px;
-  right: 5px;
-  font-size: 1.5rem;
-  color: #fff;
-  background-color: #333;
-  padding: 5px;
-  border-radius: 50%;
-}
-
-.profile_picture_upload input[type="file"] {
-  display: none;
-}
-
 /* Responsive Design */
 @media (max-width: 768px) {
   .nav {
@@ -375,4 +354,42 @@ a {
   .login_signup {
     font-size: 10px;
   }
+}
+
+
+.profile_picture_upload {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile_picture_upload label {
+  display: block;
+  position: relative;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  margin: 0 auto;
+  cursor: pointer;
+}
+
+.profile_picture_upload label img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.profile_picture_upload label i {
+  position: absolute;
+  bottom: 5px;
+  right: 5px;
+  font-size: 1.5rem;
+  color: #fff;
+  background-color: #333;
+  padding: 5px;
+  border-radius: 50%;
+}
+
+.profile_picture_upload input[type="file"] {
+  display: none;
 }
