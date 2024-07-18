@@ -19,11 +19,11 @@ $row = $result->fetch_assoc();
 $profilePicture = $row['ProfilePicture'];
 $stmt->close();
 
-$sql = "SELECT news.NewsID, news.Title, news.Content, news.DatePublished, category.CategoryName, user.Name AS UserName, user.ProfilePicture AS UserProfilePicture 
+$sql = "SELECT news.NewsID, news.Title, news.Content, news.LastUpdated, category.CategoryName, user.Name AS UserName, user.ProfilePicture AS UserProfilePicture 
         FROM news 
         JOIN category ON news.CategoryID = category.CategoryID 
         JOIN user ON news.UserID = user.UserID 
-        ORDER BY news.DatePublished DESC";
+        ORDER BY news.LastUpdated DESC";
 $result = $conn->query($sql);
 ?>
 
@@ -76,7 +76,7 @@ $result = $conn->query($sql);
                 </div>
                 <h3><?php echo htmlspecialchars($row['Title']); ?></h3>
                 <p><?php echo htmlspecialchars($row['Content']); ?></p>
-                <small>Category: <?php echo htmlspecialchars($row['CategoryName']); ?> | Published on: <?php echo htmlspecialchars($row['DatePublished']); ?></small>
+                <small>Category: <?php echo htmlspecialchars($row['CategoryName']); ?> | Published on: <?php echo htmlspecialchars($row['LastUpdated']); ?></small>
                 <div class="news-actions">
                     <a href="edit_news.php?id=<?php echo $row['NewsID']; ?>" class="abutton"><i class="fa fa-edit" aria-hidden="true"></i> Edit
                     </a>

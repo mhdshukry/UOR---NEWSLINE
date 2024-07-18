@@ -18,9 +18,11 @@ body {
 }
 
 h1 {
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 20px 0;
-    color: white;
+    color: #fff;
     font-size: 5vh;
 }
 

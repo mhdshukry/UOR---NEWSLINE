@@ -20,7 +20,9 @@ body {
 }
 
 h1 {
-    text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin: 20px 0;
     color: #fff;
     font-size: 5vh;
@@ -31,6 +33,7 @@ h1 .nav_logo_img {
     height: auto;
     margin-right: 15px;
 }
+
 
 .user_menu {
     background: rgba(255, 255, 255, 0.1);

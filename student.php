@@ -23,12 +23,12 @@ $stmt->close();
 
 $category = isset($_GET['category']) ? intval($_GET['category']) : 1;
 
-$sql = "SELECT news.Title, news.Content, news.DatePublished, category.CategoryName, 
+$sql = "SELECT news.Title, news.Content, news.LastUpdated, category.CategoryName, 
         user.Name AS UserName, user.ProfilePicture AS UserProfilePicture, user.Roll AS UserRole 
         FROM news 
         JOIN category ON news.CategoryID = category.CategoryID 
         JOIN user ON news.UserID = user.UserID 
-        WHERE news.CategoryID = ? ORDER BY news.DatePublished DESC";
+        WHERE news.CategoryID = ? ORDER BY news.LastUpdated DESC";
 
 $stmt = $conn->prepare($sql);
 if (!$stmt) {
@@ -50,7 +50,7 @@ $result = $stmt->get_result();
     <link rel="stylesheet" href="./assets/CSS/style2.css">
 </head>
 <body>
-    <h1><img src="./assets/images/ruhuna.png" alt="Rajarata University Logo" class="nav_logo_img">UOR - NEWSLINE Student Panel</h1>
+    <h1><img src="./assets/images/ruhuna.png" alt="Rajarata University Logo" class="nav_logo_img">UOR - NEWSLINE</h1>
     <div class="user_menu">
         <span>Welcome, <?php echo htmlspecialchars($_SESSION['name']); ?></span>
         <nav>
@@ -92,7 +92,7 @@ $result = $stmt->get_result();
                         </div>
                         <h2><?php echo htmlspecialchars($row['Title']); ?></h2>
                         <p><?php echo htmlspecialchars($row['Content']); ?></p>
-                        <small>Category: <?php echo htmlspecialchars($row['CategoryName']); ?> | Published on: <?php echo htmlspecialchars($row['DatePublished']); ?></small>
+                        <small>Category: <?php echo htmlspecialchars($row['CategoryName']); ?> | Published on: <?php echo htmlspecialchars($row['LastUpdated']); ?></small>
                     </article>
                 </div>
             <?php endwhile; ?>

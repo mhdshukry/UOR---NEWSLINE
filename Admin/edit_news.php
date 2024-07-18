@@ -33,12 +33,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['update'])) {
     $content = $_POST['content'];
     $category = $_POST['category'];
 
-    $sqlUpdate = "UPDATE news SET Title = ?, Content = ?, CategoryID = ? WHERE NewsID = ?";
+    $sqlUpdate = "UPDATE news SET Title = ?, Content = ?, CategoryID = ?, LastUpdated = NOW() WHERE NewsID = ?";
     $stmtUpdate = $conn->prepare($sqlUpdate);
     $stmtUpdate->bind_param("ssii", $title, $content, $category, $newsID);
 
     if ($stmtUpdate->execute()) {
-        header('Location: admin.php');
+        if ($_SESSION['roll'] == 'Dean')
+        {
+            header('Location: admin.php');
+        }else{
+            header('Location: lecturer.php');
+        }
         exit();
     } else {
         echo "Error: " . $conn->error;
